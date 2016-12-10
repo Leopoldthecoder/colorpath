@@ -1,0 +1,22 @@
+{
+  "name": "color",
+  "version": "0.0.0",
+  "description": "A vue project.",
+  "private": false,
+  "keywords": [],
+  "scripts": {
+    "dev": "cooking watch -p",
+    "dist": "cooking build -p",
+    "deploy": "npm run dist && gh-pages -d dist"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "babel-polyfill": "*",
+    "color-convert": "^1.8.2",
+    "vue": "^2.0.0-rc"
+  },
+  "devDependencies": {
+    "cooking-vue2": "*",
+    "gh-pages": "^0.12.0"
+  }
+}
