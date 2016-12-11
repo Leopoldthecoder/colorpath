@@ -1,5 +1,6 @@
-# color
-> A vue project.
+# colorpath
+<img src="https://cdn.rawgit.com/leopoldthecoder/colorpath/master/logo.svg">
+
 
 ## Development
 
