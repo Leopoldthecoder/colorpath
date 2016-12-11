@@ -1,7 +1,7 @@
-const mix = (s, t, p) => {
+const mix = (s, d, p) => {
   return s.map((sourceChannel, index) => {
-    const targetChannel = t[index];
-    return Math.round(targetChannel - (targetChannel - sourceChannel) * p);
+    const destChannel = d[index];
+    return Math.round(destChannel - (destChannel - sourceChannel) * p);
   });
 };
 

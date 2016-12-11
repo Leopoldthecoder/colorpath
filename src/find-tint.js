@@ -1,10 +1,12 @@
 import util from './utils/index';
 
 const findTint = (s, d) => {
-  const pByChannel = s.map((sourceChannel, index) => {
+  const pByChannel = [];
+  s.forEach((sourceChannel, index) => {
     const whiteChannel = 255;
+    if (sourceChannel === whiteChannel) return;
     const destChannel = d[index];
-    return (destChannel - sourceChannel) / (whiteChannel - sourceChannel);
+    pByChannel.push((destChannel - sourceChannel) / (whiteChannel - sourceChannel));
   });
   if (util.validatePercentages(pByChannel)) {
     return util.formatNumber(util.getAverage(pByChannel));

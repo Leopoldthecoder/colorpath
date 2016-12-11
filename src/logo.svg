@@ -1,0 +1,5 @@
+<svg width="100%" height="500px" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="250" cy="250" r="200" :fill="`rgb(${ light })`"></circle>
+  <circle cx="270" cy="220" r="150" :fill="`rgb(${ primary })`"></circle>
+  <circle cx="290" cy="190" r="100" fill="#F57C00"></circle>
+</svg>
