@@ -2,10 +2,10 @@
   <div>
     <p>Wonder how to generate a desired color from a source color?</p>
     <form @submit.prevent="handleSubmit">
-      <label for="source">Source color: #</label>
+      <label for="source">Source color: </label>
       <input type="text" id="source" v-model="source">
-      <label for="target">Target color: #</label>
-      <input type="text" id="target" v-model="target">
+      <label for="destination">Target color: </label>
+      <input type="text" id="destination" v-model="destination">
       <button>Submit</button>
     </form>
     <div v-show="hasResult">
@@ -19,8 +19,8 @@
       <span class="mark">*</span>
       <span class="mark">{{ p }}</span>
       <span class="mark">=</span>
-      <div class="block" :style="{ 'background-color': `#${ target }` }">
-        <p>{{ `#${ target }` }}</p>
+      <div class="block" :style="{ 'background-color': `#${ destination }` }">
+        <p>{{ `#${ destination }` }}</p>
       </div>
       <p class="expr">CSS: {{ `mix(#${ source }, #${ hex }, ${ p })` }}</p>
     </div>
@@ -55,13 +55,13 @@
 
 <script>
   import convert from 'color-convert';
-  import color from './color';
+  import colorPath from './index';
   export default {
     name: 'app',
     data() {
       return {
         source: '',
-        target: '',
+        destination: '',
         r: '',
         g: '',
         b: '',
@@ -72,10 +72,12 @@
     },
     methods: {
       handleSubmit() {
-        let s = convert.hex.rgb(this.source);
-        let t = convert.hex.rgb(this.target);
-        [this.r, this.g, this.b, this.p] = color(s, t);
-        this.p = `${ this.p * 100 }%`;
+        let s = this.source.indexOf(',') > -1 ? this.source.split(',') : convert.hex.rgb(this.source);
+        let t = this.destination.indexOf(',') > -1 ? this.destination.split(',') : convert.hex.rgb(this.destination);
+        let result = colorPath.findMixer(s, t);
+        [this.r, this.g, this.b] = result.mixer;
+        this.p = result.percentage;
+        this.p = `${ parseFloat((this.p * 100).toPrecision(4)) }%`;
         this.hex = convert.rgb.hex.apply(null, [this.r, this.g, this.b]);
         this.hasResult = true;
       }

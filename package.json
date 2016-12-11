@@ -13,7 +13,7 @@
   "dependencies": {
     "babel-polyfill": "*",
     "color-convert": "^1.8.2",
-    "vue": "^2.0.0-rc"
+    "vue": "^2.1.0"
   },
   "devDependencies": {
     "cooking-vue2": "*",
