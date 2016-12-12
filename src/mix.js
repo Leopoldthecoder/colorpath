@@ -1,7 +1,11 @@
-const mix = (s, d, p) => {
-  return s.map((sourceChannel, index) => {
-    const destChannel = d[index];
-    return Math.round(destChannel - (destChannel - sourceChannel) * p);
+import util from './utils/index';
+
+const mix = (s, m, p) => {
+  let source = util.formatColor(s);
+  let mixer = util.formatColor(m);
+  return source.map((sourceChannel, index) => {
+    const mixerChannel = mixer[index];
+    return Math.round(mixerChannel - (mixerChannel - sourceChannel) * p);
   });
 };
 

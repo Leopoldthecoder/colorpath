@@ -1,5 +1,8 @@
+import util from './utils/index';
+
 const shade = (s, p) => {
-  return s.map(sourceChannel => Math.round(sourceChannel * (1 - p)));
+  let source = util.formatColor(s);
+  return source.map(sourceChannel => Math.round(sourceChannel * (1 - p)));
 };
 
 export default shade;

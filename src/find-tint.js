@@ -1,11 +1,13 @@
 import util from './utils/index';
 
 const findTint = (s, d) => {
+  let source = util.formatColor(s);
+  let destination = util.formatColor(d);
   const pByChannel = [];
-  s.forEach((sourceChannel, index) => {
+  source.forEach((sourceChannel, index) => {
     const whiteChannel = 255;
     if (sourceChannel === whiteChannel) return;
-    const destChannel = d[index];
+    const destChannel = destination[index];
     pByChannel.push((destChannel - sourceChannel) / (whiteChannel - sourceChannel));
   });
   if (util.validatePercentages(pByChannel)) {

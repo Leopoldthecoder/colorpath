@@ -1,18 +1,4 @@
 # colorpath
-<img src="https://cdn.rawgit.com/leopoldthecoder/colorpath/master/logo.svg">
+> There's a path for everyone, and my path always leads me back to you
 
-
-## Development
-
-```shell
-npm i cooking -g
-npm run dev
-```
-
-## Production
-```
-npm run dist
-```
-
-## License
-MIT
+WIP

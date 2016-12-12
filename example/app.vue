@@ -55,7 +55,7 @@
 
 <script>
   import convert from 'color-convert';
-  import colorPath from './index';
+  import colorPath from '../src/index';
   export default {
     name: 'app',
     data() {
@@ -72,9 +72,7 @@
     },
     methods: {
       handleSubmit() {
-        let s = this.source.indexOf(',') > -1 ? this.source.split(',') : convert.hex.rgb(this.source);
-        let t = this.destination.indexOf(',') > -1 ? this.destination.split(',') : convert.hex.rgb(this.destination);
-        let result = colorPath.findMixer(s, t);
+        let result = colorPath.findMixer(this.source, this.destination);
         [this.r, this.g, this.b] = result.mixer;
         this.p = result.percentage;
         this.p = `${ parseFloat((this.p * 100).toPrecision(4)) }%`;

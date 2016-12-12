@@ -19,8 +19,8 @@ const validateMixer = mixer => {
 };
 
 const findMixer = (s, d) => {
-  source = s;
-  destination = d;
+  source = util.formatColor(s);
+  destination = util.formatColor(d);
   let p;
   let mixer = [];
 
