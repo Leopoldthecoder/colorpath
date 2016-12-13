@@ -54,11 +54,11 @@
 </style>
 
 <script>
-  import convert from 'color-convert';
-  import colorPath from '../src/index';
+  import convert from 'color-convert'
+  import colorPath from '../src/index'
   export default {
     name: 'app',
-    data() {
+    data () {
       return {
         source: '',
         destination: '',
@@ -68,17 +68,17 @@
         p: '',
         hex: '',
         hasResult: false
-      };
+      }
     },
     methods: {
-      handleSubmit() {
-        let result = colorPath.findMixer(this.source, this.destination);
-        [this.r, this.g, this.b] = result.mixer;
-        this.p = result.percentage;
-        this.p = `${ parseFloat((this.p * 100).toPrecision(4)) }%`;
-        this.hex = convert.rgb.hex.apply(null, [this.r, this.g, this.b]);
-        this.hasResult = true;
+      handleSubmit () {
+        const result = colorPath.findMixer(this.source, this.destination)
+        this.p = result.percentage
+        ;[this.r, this.g, this.b] = result.mixer
+        this.p = `${parseFloat((this.p * 100).toPrecision(4))}%`
+        this.hex = convert.rgb.hex.apply(null, [this.r, this.g, this.b])
+        this.hasResult = true
       }
     }
-  };
+  }
 </script>

@@ -1,12 +1,12 @@
-import util from './utils/index';
+import util from './utils/index'
 
 const tint = (s, p) => {
-  let source = util.formatColor(s);
+  const source = util.formatColor(s)
   return source.map(sourceChannel => {
-    sourceChannel = Number(sourceChannel);
-    const whiteChannel = 255;
-    return Math.round(sourceChannel + (whiteChannel - sourceChannel) * p);
-  });
-};
+    sourceChannel = Number(sourceChannel)
+    const whiteChannel = 255
+    return Math.round(sourceChannel + (whiteChannel - sourceChannel) * p)
+  })
+}
 
-export default tint;
+export default tint

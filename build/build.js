@@ -15,7 +15,7 @@ var build = function (opts) {
       
       console.log(dest)
       bundle.write({
-        format: 'iife',
+        format: 'cjs',
         moduleName: opts.moduleName || 'colorpath',
         dest: dest
       })
