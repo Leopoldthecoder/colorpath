@@ -10,7 +10,7 @@ const findShade = (s, d) => {
   if (util.validatePercentages(pByChannel)) {
     return util.formatNumber(1 - util.getAverage(pByChannel))
   } else {
-    throw new Error(`${d} can not be shaded from ${s}, try findPath instead.`)
+    throw new Error(`${ d } can not be shaded from ${ s }, try findPath instead.`)
   }
 }
 

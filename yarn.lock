@@ -1542,13 +1542,13 @@ eslint-config-defaults@*:
   version "9.0.0"
   resolved "http://registry.npm.taobao.org/eslint-config-defaults/download/eslint-config-defaults-9.0.0.tgz#a090adc13b2935e3f43b3cd048a92701654e5ad5"
 
+eslint-config-doran@^1.0.1:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/eslint-config-doran/download/eslint-config-doran-1.0.1.tgz#4b2173cbaa47c9c71d4858faee62289af62a9a89"
+
 eslint-config-elemefe@*:
   version "0.1.1"
   resolved "http://registry.npm.taobao.org/eslint-config-elemefe/download/eslint-config-elemefe-0.1.1.tgz#5a1664ce3f7d91f68528b508d040044ae6c10aa3"
-
-eslint-config-vue@^2.0.1:
-  version "2.0.1"
-  resolved "http://registry.npm.taobao.org/eslint-config-vue/download/eslint-config-vue-2.0.1.tgz#da872f1399c7812aa2ce3fc2dd26f83a31f33b4f"
 
 eslint-friendly-formatter@*:
   version "2.0.6"

@@ -13,7 +13,7 @@ const findTint = (s, d) => {
   if (util.validatePercentages(pByChannel)) {
     return util.formatNumber(util.getAverage(pByChannel))
   } else {
-    throw new Error(`${d} can not be tinted from ${s}, try findPath instead.`)
+    throw new Error(`${ d } can not be tinted from ${ s }, try findPath instead.`)
   }
 }
 

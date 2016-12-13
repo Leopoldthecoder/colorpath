@@ -25,7 +25,7 @@
     "cooking-saladcss": "^0.4.3",
     "cooking-vue2": "^0.3.0",
     "css-loader": "^0.26.1",
-    "eslint-config-vue": "^2.0.1",
+    "eslint-config-doran": "^1.0.1",
     "eslint-plugin-vue": "^1.0.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",

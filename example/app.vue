@@ -58,7 +58,7 @@
   import colorPath from '../src/index'
   export default {
     name: 'app',
-    data () {
+    data() {
       return {
         source: '',
         destination: '',
@@ -71,11 +71,11 @@
       }
     },
     methods: {
-      handleSubmit () {
+      handleSubmit() {
         const result = colorPath.findMixer(this.source, this.destination)
         this.p = result.percentage
         ;[this.r, this.g, this.b] = result.mixer
-        this.p = `${parseFloat((this.p * 100).toPrecision(4))}%`
+        this.p = `${ parseFloat((this.p * 100).toPrecision(4)) }%`
         this.hex = convert.rgb.hex.apply(null, [this.r, this.g, this.b])
         this.hasResult = true
       }
