@@ -8,6 +8,7 @@ const validatePercentages = p => {
 
 const formatColor = color => {
   if (Array.isArray(color)) return color
+
   color = '' + color
   if (/^#?[0123456789AaBbCcDdEeFf]{6}$/.test(color)) {
     color = color.slice(-6)
