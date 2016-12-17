@@ -1,7 +1,7 @@
 {
-  "name": "color",
+  "name": "colorpath",
   "version": "0.0.0",
-  "description": "A vue project.",
+  "description": "Find path for colors",
   "private": false,
   "keywords": [],
   "main": "lib/colorpath.js",
@@ -10,7 +10,8 @@
     "build": "node build/build.js",
     "dist": "node build/build.js && cooking build -c build/cooking.demo.js -p",
     "test": "npm run build && mocha -r intelli-espower-loader test/color.test.js",
-    "deploy": "npm run dist && gh-pages -d dist"
+    "deploy": "npm run dist && gh-pages -d dist",
+    "pub": "sh release.sh"
   },
   "license": "MIT",
   "dependencies": {
