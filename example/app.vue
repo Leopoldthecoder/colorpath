@@ -70,6 +70,9 @@
         hasResult: false
       }
     },
+    created() {
+      window.clp = colorPath
+    },
     methods: {
       handleSubmit() {
         const result = colorPath.findMixer(this.source, this.destination)
