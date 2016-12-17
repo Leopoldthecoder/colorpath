@@ -6,7 +6,7 @@
   "keywords": [],
   "main": "lib/colorpath.js",
   "bin": {
-    "clp": "bin/clp"
+    "clp": "bin/clp.js"
   },
   "scripts": {
     "dev": "cooking watch -c build/cooking.demo.js -p",

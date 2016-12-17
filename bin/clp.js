@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var meow = require('meow')
 var clp = require('../lib/colorpath')
 
