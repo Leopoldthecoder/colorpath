@@ -6,8 +6,11 @@ const findTint = (s, d) => {
   const pByChannel = []
   source.forEach((sourceChannel, index) => {
     const whiteChannel = 255
-    if (sourceChannel === whiteChannel) return
     const destChannel = destination[index]
+    if (sourceChannel === whiteChannel) {
+      if (destChannel !== whiteChannel) pByChannel.push(-1)
+      return
+    }
     pByChannel.push((destChannel - sourceChannel) / (whiteChannel - sourceChannel))
   })
   if (util.validatePercentages(pByChannel)) {
