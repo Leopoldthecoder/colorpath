@@ -21,7 +21,7 @@ cooking.set({
   minimize: true,
   chunk: true, // see https://cookingjs.github.io/zh-cn/configuration.html#chunk
   postcss: [
-    // require('...')
+    require('postcss-salad')()
   ],
   publicPath: '',
   assetsPath: 'static',

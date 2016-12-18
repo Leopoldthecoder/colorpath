@@ -1,86 +1,169 @@
 <template>
-  <div>
-    <p>Wonder how to generate a desired color from a source color?</p>
-    <form @submit.prevent="handleSubmit">
-      <label for="source">Source color: </label>
-      <input type="text" id="source" v-model="source">
-      <label for="destination">Target color: </label>
-      <input type="text" id="destination" v-model="destination">
-      <button>Submit</button>
-    </form>
-    <div v-show="hasResult">
-      <div class="block" :style="{ 'background-color': `#${ source }` }">
-        <p>{{ `#${ source }` }}</p>
+  <div class="container">
+    <transition name="fade" mode="out-in">
+      <div class="stage" v-if="stage === 1" key="1">
+        <button class="operation" @click="stage = 2">Take a path</button>
+        <button class="operation">Find way home</button>
       </div>
-      <span class="mark">+</span>
-      <div class="block" :style="{ 'background-color': `#${ hex }` }">
-        <p>{{ `#${ hex }` }}</p>
+
+      <div class="stage" v-if="stage === 2" key="2">
+        <button
+          class="operation"
+          :class="{ 'active': path.method === item }"
+          @click="handleMethodClick(item)"
+          v-if="stage === 2"
+          v-for="item in ['tint', 'shade', 'mix']">
+          {{ item }}
+        </button>
       </div>
-      <span class="mark">*</span>
-      <span class="mark">{{ p }}</span>
-      <span class="mark">=</span>
-      <div class="block" :style="{ 'background-color': `#${ destination }` }">
-        <p>{{ `#${ destination }` }}</p>
+      
+      <div class="stage" v-if="stage === 3" key="3">
+        <div class="item">
+          <label for="source">source color</label>
+          <input type="text" placeholder="#FFFFFF" id="source" v-model="path.source">
+        </div>
+        <div class="item" v-show="path.method === 'mix'">
+          <label for="mixer">mix color</label>
+          <input type="text" placeholder="#333333" id="mixer" v-model="path.mixer">
+        </div>
+        <div class="item">
+          <label for="percent">percentage</label>
+          <input type="text" placeholder="0.5" id="percent" v-model.number="path.percentage">
+        </div>
+        <button class="operation" @click="submit">Take me there!</button>
+        <p>{{ result }}</p>
       </div>
-      <p class="expr">CSS: {{ `mix(#${ source }, #${ hex }, ${ p })` }}</p>
-    </div>
+      
+      <div class="stage" v-if="stage === 4" key="4">
+        <div class="block">
+          <div class="color" :style="{ 'background-color': path.source }"></div>
+          <p>{{ path.source }}</p>
+        </div>
+        <div class="block" v-show="path.method === 'mix'">
+          <div class="color" :style="{ 'background-color': path.mixer }"></div>
+          <p>{{ path.mixer }}</p>
+        </div>
+        <div class="block">
+          <div class="color" :style="{ 'background-color': result }"></div>
+          <p>{{ result }}</p>
+        </div>
+        <p class="css">{{ `${ path.method }(${ path.source }, ${ path.method === 'mix' ? `${ path.mixer }, ` : '' }${ path.percentage * 100 }%) = ${ result }` }}</p>
+      </div>
+    </transition>
+    <p>
+      <span @click="stage = 1">Restart</span>
+      <span @click="stage > 1 && stage--">Back</span>
+    </p>
   </div>
 </template>
 
 <style>
-  form {
-    margin-bottom: 50px;
+  @reset-global pc;
+  html, body {
+    font-family: "Comic Sans MS";
+    font-size: 24px;
+    color: #388E3C;
+    height: 100%;
+  }
+  .fade-enter,
+  .fade-leave-active {
+    opacity: 0;
+  }
+  .container {
+    height: 100%;
+    background: linear-gradient(35deg, rgba(255, 221, 0, 0.48), rgba(0, 255, 0, 0.28));
+    position: relative;
+  }
+  .stage {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    transition: .2s;
+    transform: translateY(-50%);
+  }
+  .operation {
+    margin: 20px auto;
+    display: block;
+    color: #FFD740;;
+    font-size: 50px;
+    background-color: #4CAF50;
+    size: 450px 150px;
+    border: solid 10px #FFD740;
+    border-radius: 40px;
+    transition: .4s;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.07);
+      background-color: #388E3C;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+  .item {
+    margin: 10px auto;
+    label {
+      display: inline-block;
+      width: 200px;
+    }
   }
   .block {
     vertical-align: middle;
     display: inline-block;
-    size: 100px;
-    margin: 0 10px;
+    margin: 0 30px;
     position: relative;
     text-align: center;
+    .color {
+      size: 150px;
+      border: solid 10px #FFD740;
+      border-radius: 40px;
+      box-sizing: border-box;
+    }
     p {
-      width: 100%;
-      position: absolute;
-      bottom: -25px;
-      margin: 0;
+      margin-top: 10px;
     }
   }
-  .mark {
-    padding: 10px;
-  }
-  .expr {
-    margin-top: 60px;
+  .css {
+    margin-top: 20px;
+    font-size: 36px;
   }
 </style>
 
 <script>
   import convert from 'color-convert'
-  import colorPath from '../src/index'
   export default {
     name: 'app',
     data() {
       return {
-        source: '',
-        destination: '',
-        r: '',
-        g: '',
-        b: '',
-        p: '',
-        hex: '',
-        hasResult: false
+        stage: 1,
+        path: {
+          source: '',
+          method: '',
+          mixer: '',
+          percentage: ''
+        },
+        result: ''
       }
     },
-    created() {
-      window.clp = colorPath
+    watch: {
+      stage(val, oldVal) {
+        if (val < oldVal) this.result = ''
+      }
     },
     methods: {
-      handleSubmit() {
-        const result = colorPath.findMixer(this.source, this.destination)
-        this.p = result.percentage
-        ;[this.r, this.g, this.b] = result.mixer
-        this.p = `${ parseFloat((this.p * 100).toPrecision(4)) }%`
-        this.hex = convert.rgb.hex.apply(null, [this.r, this.g, this.b])
-        this.hasResult = true
+      handleMethodClick(item) {
+        this.path.method = item
+        this.stage = 3
+      },
+      submit() {
+        if (this.path.method === 'mix') {
+          this.result = window.clp[this.path.method](this.path.source, this.path.mixer, this.path.percentage)
+        } else {
+          this.result = window.clp[this.path.method](this.path.source, this.path.percentage)
+        }
+        this.result = `#${ convert.rgb.hex.apply(null, this.result) }`
+        this.stage = 4
       }
     }
   }
