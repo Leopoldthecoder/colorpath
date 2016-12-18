@@ -38,6 +38,7 @@ const findMixer = (s, d) => {
       }
     }
   }
+  /* istanbul ignore next */
   return {}
 }
 

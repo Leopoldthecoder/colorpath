@@ -10,4 +10,4 @@ deploy:
 	@npm run deploy
 
 test:
-	@npm test
+	@./node_modules/.bin/nyc npm test

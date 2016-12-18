@@ -3,7 +3,13 @@
   "version": "0.1.3",
   "description": "Find path for colors",
   "private": false,
-  "keywords": [],
+  "keywords": [
+    "color module",
+    "CSS4",
+    "tint",
+    "shade",
+    "mix"
+  ],
   "main": "lib/colorpath.js",
   "bin": {
     "clp": "bin/clp.js"
@@ -12,7 +18,7 @@
     "dev": "cooking watch -c build/cooking.demo.js -p",
     "build": "node build/build.js",
     "dist": "node build/build.js && cooking build -c build/cooking.demo.js -p",
-    "test": "npm run build && mocha -r intelli-espower-loader test/color.test.js",
+    "test": "mocha --require babel-register test/color.test.js",
     "deploy": "npm run dist && gh-pages -d dist",
     "pub": "sh release.sh"
   },
@@ -20,11 +26,17 @@
   "dependencies": {
     "meow": "^3.7.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Leopoldthecoder/colorpath.git"
+  },
   "devDependencies": {
     "babel-core": "^6.20.0",
     "babel-loader": "^6.2.9",
+    "babel-plugin-espower": "^2.3.1",
     "babel-polyfill": "*",
     "babel-preset-es2015-rollup": "^1.2.0",
+    "babel-register": "^6.18.0",
     "color-convert": "^1.8.2",
     "cooking": "^1.2.7",
     "cooking-lint": "^0.1.3",
@@ -39,7 +51,6 @@
     "gh-pages": "^0.12.0",
     "html-loader": "^0.4.4",
     "html-webpack-plugin": "^2.24.1",
-    "intelli-espower-loader": "^1.0.1",
     "json-loader": "^0.5.4",
     "mocha": "^3.2.0",
     "nyc": "^10.0.0",

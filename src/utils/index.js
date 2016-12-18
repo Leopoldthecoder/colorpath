@@ -20,6 +20,7 @@ const formatColor = color => {
     color = /\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}/.exec(color)[0].split(',').map(channel => Number(channel.trim()))
     if (color.every(channel => channel <= 255)) return color
   }
+  /* istanbul ignore next */
   throw new Error(`${ color } is not a legal color!`)
 }
 

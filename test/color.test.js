@@ -1,29 +1,42 @@
-const assert = require('power-assert')
-const clp = require('../lib/colorpath')
-const TEST_COUNT = 50000
+import assert from 'power-assert'
+import clp from '../src/index'
+import utils from '../src/utils'
 
-const getRandomChannel = _ => {
-  return Math.floor(Math.random() * 256)
-}
-
-const getRandomColor = _ => {
-  return [getRandomChannel(), getRandomChannel(), getRandomChannel()]
-}
-
-const isWithinTolerance = (a, b) => {
-  let within = true
-  for (let i = 0; i < a.length; i++) {
-    if (Math.abs(a[i] - b[i]) > 3) {
-      within = false
-    }
-  }
-  return within
-}
+describe('utils', () => {
+  it('color formatter', () => {
+    const hexColor = '3F7D2A'
+    const rgbColorStr = 'rgb(63, 125, 42)'
+    const rgbColorArr = [63, 125, 42]
+    assert.deepEqual(utils.formatColor(hexColor), rgbColorArr)
+    assert.deepEqual(utils.formatColor(rgbColorStr), rgbColorArr)
+    assert.deepEqual(utils.formatColor(rgbColorArr), rgbColorArr)
+  })
+})
 
 describe('find path', function() {
-  this.timeout(10000);
+  this.timeout(6000)
 
-  it('wild slaughter', done => {
+  const TEST_COUNT = 50000
+  
+  const getRandomChannel = _ => {
+    return Math.floor(Math.random() * 256)
+  }
+
+  const getRandomColor = _ => {
+    return [getRandomChannel(), getRandomChannel(), getRandomChannel()]
+  }
+
+  const isWithinTolerance = (a, b) => {
+    let within = true
+    for (let i = 0; i < a.length; i++) {
+      if (Math.abs(a[i] - b[i]) > 3) {
+        within = false
+      }
+    }
+    return within
+  }
+
+  it('wild slaughter', () => {
     for (let i = 0; i < TEST_COUNT; i++) {
       const source = getRandomColor()
       const destination = getRandomColor()
@@ -47,7 +60,5 @@ describe('find path', function() {
           assert.deepEqual(clp.mix(source, result.mixer, result.percentage), destination)
       }
     }
-
-    done()
   })
 })

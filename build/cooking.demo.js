@@ -6,7 +6,7 @@ cooking.set({
     app: ['babel-polyfill', './example/main.js']
   },
   dist: './dist',
-  template: './index.tpl',
+  template: './example/index.tpl',
 
   devServer: {
     port: 8080,
@@ -17,7 +17,7 @@ cooking.set({
   // production
   clean: true,
   hash: true,
-  sourceMap: true,
+  sourceMap: false,
   minimize: true,
   chunk: true, // see https://cookingjs.github.io/zh-cn/configuration.html#chunk
   postcss: [

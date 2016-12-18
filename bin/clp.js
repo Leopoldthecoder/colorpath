@@ -16,7 +16,7 @@ var cli = meow(`
       --find-path  find which path <source> color should take to get to <destination> color 
 
     Examples
-      $ clp FF08D5,0.4 -t
+      $ clp FF08D5 0.4 -t
 `, {
   alias: {
     t: 'tint',
