@@ -1,4 +1,3 @@
 {
-  "plugins": ["vue"],
   "extends": ["doran"]
 }
