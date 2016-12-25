@@ -1,0 +1,14 @@
+.gitignore
+.eslintrc
+.babelrc
+.idea
+.nyc_output
+
+node_modules
+test
+build
+docs
+
+npm-debug.log
+yarn.lock
+release.sh

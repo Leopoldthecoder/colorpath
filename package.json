@@ -28,6 +28,9 @@
     "url": "https://github.com/Leopoldthecoder/colorpath.git"
   },
   "devDependencies": {
+    "babel-plugin-espower": "^2.3.1",
+    "babel-preset-es2015-rollup": "^1.2.0",
+    "babel-register": "^6.18.0",
     "coveralls": "^2.11.15",
     "eslint-config-doran": "^1.0.1",
     "mocha": "^3.2.0",
