@@ -6,4 +6,4 @@
 
 [GitHub](https://github.com/Leopoldthecoder/colorpath)
 
-![color](rgb(255, 183, 51))
+![color](#ffb733)
