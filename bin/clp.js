@@ -27,7 +27,11 @@ var cli = meow(`
 
 var flags = Object.keys(cli.flags)
 var method
-
+cli.input.forEach((item, index) => {
+  if (item > 1) {
+    cli.input[index] = ('000000' + item).slice(-6)
+  }
+})
 if (flags.length === 0) {
   cli.showHelp()
 } else {
